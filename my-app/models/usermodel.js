@@ -3,13 +3,17 @@ export const userModel = {
   createUser: async (userData) => {
     let conn;
     try {
+        //connect to the database
       conn = await pool.getConnection();
+      //write the sql query
       const query = "INSERT INTO users (name, email) VALUES (?, ?)";
+      // run query with  data
       const result = await conn.query(query, [userData.name, userData.email]);
       console.log("User created with ID:", result.insertId);
     } catch (err) {
       throw err;
     } finally {
+        // release the connection back to the pool
       if (conn) conn.release();
     }
   },

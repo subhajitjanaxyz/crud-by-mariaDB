@@ -2,6 +2,7 @@ import {userModel} from "../models/usermodel.js";
 export const userController = {
   createUser: async (req, res) => {
     try {
+        // get data from request body
       const userData = req.body;
       console.log(userData);
       await userModel.createUser(userData);
